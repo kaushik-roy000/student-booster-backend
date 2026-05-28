@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: student-booster-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/student_booster
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        use_sql_comments: true
+    show-sql: false
+    open-in-view: false
+
+  security:
+    user:
+      name: admin
+      password: admin123
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+jwt:
+  secret: your-secret-key-change-this-in-production-with-a-strong-key
+  expiration: 86400000  # 24 hours in milliseconds
+
+logging:
+  level:
+    root: INFO
+    com.studentbooster: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
